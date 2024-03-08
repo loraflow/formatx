@@ -199,19 +199,19 @@ impl FormatSpec {
             );
         }
 
-        if spec.contains('x') {
-            ufs!(
-                "x formatting is not supported but used in {{{}}}",
-                placeholder
-            );
-        }
+        // if spec.contains('x') {
+        //     ufs!(
+        //         "x formatting is not supported but used in {{{}}}",
+        //         placeholder
+        //     );
+        // }
 
-        if spec.contains('X') {
-            ufs!(
-                "X formatting is not supported but used in {{{}}}",
-                placeholder
-            );
-        }
+        // if spec.contains('X') {
+        //     ufs!(
+        //         "X formatting is not supported but used in {{{}}}",
+        //         placeholder
+        //     );
+        // }
 
         if spec.contains('p') {
             ufs!(
