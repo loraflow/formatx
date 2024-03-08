@@ -351,6 +351,7 @@ impl FormatSpec {
             }
         }
 
+        let mut  format_hex=false;
         if let Some(types) = &self.types {
             if self.hashtag {
                 if types == "?" {
@@ -362,10 +363,12 @@ impl FormatSpec {
                 }
             } else if types == "?" {
                 return format!("{:?}", value);
-            } else if types == "x?" {
-                return format!("{:x?}", value);
-            } else if types == "X?" {
-                return format!("{:X?}", value);
+            } else if types == "x?"  || types == "x" {
+                fmtval= format!("{:x?}", value);
+                format_hex=true;
+            } else if types == "X?" || types == "X" {
+                fmtval= format!("{:X?}", value);
+                format_hex=true;
             }
         }
 
@@ -436,7 +439,11 @@ impl FormatSpec {
             } else if self.zero && self.hashtag {
                 fmtval = format!("{:#01$}", fmtval, width);
             } else if self.zero {
-                fmtval = format!("{:01$}", fmtval, width);
+                if format_hex {
+                    fmtval = format!("{:0>1$}", fmtval, width);
+                }else{
+                    fmtval = format!("{:01$}", fmtval, width);
+                }
             } else if self.hashtag {
                 fmtval = format!("{:#1$}", fmtval, width);
             } else {
